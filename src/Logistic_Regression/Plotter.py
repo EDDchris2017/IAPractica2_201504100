@@ -7,10 +7,12 @@ def show_picture(pixels):
     chart.show()
 
 
-def show_Model(models):
+def show_Model(models, ruta_imagen):
     for model in models:
         chart.plot(model.bitacora, label=str(model.alpha))
     chart.ylabel('Costo')
     chart.xlabel('Iteraciones')
     legend = chart.legend(loc='upper center', shadow=True)
+    chart.savefig(ruta_imagen + ".png")
     chart.show()
+    

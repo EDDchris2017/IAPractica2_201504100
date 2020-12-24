@@ -10,21 +10,24 @@ from Logistic_Regression.Data import Data
 #MIN_VALUE = 0.1
 #STEP = 100
 
-MAX_ITERATIONS = 10000
-MIN_VALUE = 0.0
-STEP = 10 #Cada cuánto va a agregar a la bitácora el costo. Lo hace cuando es múltiplo del valor que se le da
+#MAX_ITERATIONS = 10000
+#MIN_VALUE = 0.0
+#STEP = 10 #Cada cuánto va a agregar a la bitácora el costo. Lo hace cuando es múltiplo del valor que se le da
 
 
 
 class Model:
 
-    def __init__(self, train_set, test_set, reg, alpha, lam):
+    def __init__(self, train_set, test_set, reg, alpha, lam, MAX_ITERATIONS, MIN_VALUE, STEP):
         # Se extraen las constantes
         self.alpha = alpha
         self.lam = lam
         self.reg = reg
         self.train_set = train_set
         self.test_set = test_set
+        self.MAX_ITERATIONS = MAX_ITERATIONS
+        self.MIN_VALUE      = MIN_VALUE
+        self.STEP           = STEP
         # Se inicializan los coeficientes del modelo
         self.betas = np.zeros((self.train_set.n, 1))
         #print(self.betas)
@@ -54,11 +57,11 @@ class Model:
         self.betas -= self.alpha * gradient
 
     def finalization(self, cost, iterations):
-        if iterations % STEP == 0: self.bitacora.append(cost)
+        if iterations % self.STEP == 0: self.bitacora.append(cost)
         
-        if cost < MIN_VALUE:
+        if cost < self.MIN_VALUE:
             return True
-        elif iterations > MAX_ITERATIONS:
+        elif iterations > self.MAX_ITERATIONS:
             return True
         else:
             return False
