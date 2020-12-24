@@ -1,13 +1,28 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from flask_session import Session
 import json
+import shutil
 import os
 
+UPLOAD_FOLDER = 'static/uploads/'
+
 app = Flask(__name__)
+app.secret_key = "secret key"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 SESSION_TYPE = 'filesystem'
 app.config.from_object(__name__)
 Session(app)
 
+
+def borrarCarpeta():
+    folder = "static/uploads"
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
 
 @app.route('/status')
 def status():
@@ -15,17 +30,18 @@ def status():
 
 @app.route('/imagenes', methods=['GET', 'POST'])
 def imagenes():
+    borrarCarpeta()
     files = request.files.getlist('files[]')
     file_names = []
     for file in files:
         file_names.append(file.filename)
-        file.save("../img_usuario/" + file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
     return render_template('index.html', filenames=file_names)
 
 @app.route('/display/<filename>')
 def display_image(filename):
 	print('display_image filename: ' + filename)
-	return redirect(url_for("../img_usuario/", filename='uploads/' + filename), code=301)
+	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 @app.route('/')
 def home_form():

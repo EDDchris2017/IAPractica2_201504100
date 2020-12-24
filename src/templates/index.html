@@ -33,12 +33,14 @@
             <input type="submit" value="Cargar Imagen">
         </p>
     </form>
-    {% if filenames %}
-	    {% for filename in filenames %}
-		    <div>
-			    <img src="{{ url_for('display_image', filename=filename) }}">
-		    </div>
-	    {% endfor %}
-    {% endif %}
+    <div class="row">
+        {% if filenames %}
+	        {% for filename in filenames %}
+		        <div>
+			        <img src="{{ url_for('display_image', filename=filename) }}">
+		     </div>
+	        {% endfor %}
+        {% endif %}
+    </div>
 </body>
 </html>
