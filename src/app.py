@@ -3,6 +3,7 @@ from flask_session import Session
 import json
 import shutil
 import os
+from Predecir import *
 
 UPLOAD_FOLDER = 'static/uploads/'
 
@@ -13,6 +14,9 @@ SESSION_TYPE = 'filesystem'
 app.config.from_object(__name__)
 Session(app)
 
+# Carga de Modelos de la usac
+predecir = Predecir(1,2,3,4)
+#predecir.abrirModelos()
 
 def borrarCarpeta():
     folder = "static/uploads"
@@ -37,11 +41,19 @@ def imagenes():
         file_names.append(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
     return render_template('index.html', filenames=file_names)
+    
 
 @app.route('/display/<filename>')
 def display_image(filename):
 	print('display_image filename: ' + filename)
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
+@app.route('/analizar', methods=['GET', 'POST'])
+def calcular():
+    # Ejecutar Predeccion de archivos cargados
+    predecir.ejecutar()
+    pass
+
 
 @app.route('/')
 def home_form():

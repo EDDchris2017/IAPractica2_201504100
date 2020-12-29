@@ -1,0 +1,80 @@
+
+------Modelo 1------
+Entrenamiento = 98.86685552407933
+Validacion = 91.01123595505618
+Alpha      = 0.0003
+Lam        = 150
+Regulacion = False
+MAX ITERATIONS = 12000
+MIN_VALUE      = 0.1
+STEP           = 20
+
+
+
+
+
+------Modelo 2------
+Entrenamiento = 98.58356940509915
+Validacion = 97.75280898876404
+Alpha      = 0.0007
+Lam        = 150
+Regulacion = False
+MAX ITERATIONS = 12000
+MIN_VALUE      = 0.0
+STEP           = 10
+
+
+------Modelo 3------
+Entrenamiento = 98.01699716713881
+Validacion = 94.38202247191012
+Alpha      = 0.005
+Lam        = 200
+Regulacion = True
+MAX ITERATIONS = 10000
+MIN_VALUE      = 0.0
+STEP           = 30
+
+
+------Modelo 4------
+Entrenamiento = 97.73371104815864
+Validacion = 88.76404494382022
+Alpha      = 0.8
+Lam        = 0.5
+Regulacion = True
+MAX ITERATIONS = 1500
+MIN_VALUE      = 0.0
+STEP           = 30
+
+
+------Modelo 4------
+Entrenamiento = 99.71671388101983
+Validacion = 87.64044943820225
+Alpha      = 0.05
+Lam        = 1.8
+Regulacion = True
+MAX ITERATIONS = 1500
+MIN_VALUE      = 0.2
+STEP           = 15
+
+
+------Modelo 4------
+Entrenamiento = 97.1671388101983
+Validacion = 96.62921348314607
+Alpha      = 0.005
+Lam        = 100
+Regulacion = True
+MAX ITERATIONS = 1500
+MIN_VALUE      = 0.2
+STEP           = 10
+
+
+------Modelo 5------
+Entrenamiento = 96.60056657223797
+Validacion = 97.75280898876404
+Alpha      = 0.002
+Lam        = 600
+Regulacion = True
+MAX ITERATIONS = 15000
+MIN_VALUE      = 0.0
+STEP           = 10
+

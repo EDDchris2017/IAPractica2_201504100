@@ -17,28 +17,42 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-dark bg-dark">
         <!-- Navbar content -->
-        <h1>Machine Learning</h1>
-        <h2>201504100</h2>
+        <p>
+            <h1 class="text-primary">Machine Learning</h1>
+            <h2 class="text-primary">201504100</h2>
+        </p>
     </nav>
     <br>
-    <form method="post" action="/imagenes" enctype="multipart/form-data">
-        <dl>
-            <p>
-                <input type="file" name="files[]" multiple="true" autocomplete="off" required>
-            </p>
-        </dl>
-        <p>
-            <input type="submit" value="Cargar Imagen">
-        </p>
-    </form>
+    <div class="row">
+        <div class="col">
+            <form method="post" action="/imagenes" enctype="multipart/form-data">
+                <dl>
+                    <p>
+                        <input type="file" name="files[]" multiple="true" autocomplete="off" required>
+                    </p>
+                </dl>
+                <p>
+                    <input type="submit" value="Cargar Imagen">
+                </p>
+            </form>
+        </div>
+        <div class="col">
+            <form method="post" action="/analizar" enctype="multipart/form-data">
+                <p>
+                    <input type="submit" value="Analizar Imagenes">
+                </p>
+            </form>
+        </div>
+        
+    </div>
     <div class="row">
         {% if filenames %}
 	        {% for filename in filenames %}
-		        <div>
+		        <div class=".col-sm-">
 			        <img src="{{ url_for('display_image', filename=filename) }}">
-		     </div>
+		        </div>
 	        {% endfor %}
         {% endif %}
     </div>
