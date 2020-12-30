@@ -47,14 +47,47 @@
         </div>
         
     </div>
+    {% if filenames %}
     <div class="row">
-        {% if filenames %}
 	        {% for filename in filenames %}
 		        <div class=".col-sm-">
 			        <img src="{{ url_for('display_image', filename=filename) }}">
 		        </div>
-	        {% endfor %}
-        {% endif %}
+	        {% endfor %}   
     </div>
+    {% endif %}
+    <!-- Muestra de Resultado de Predicciones-->
+    {% if predicciones %}
+        {% for filename in predicciones %}
+            <div class="row">
+                <img src="{{ url_for('display_image', filename=filename.imagen) }}">
+                <table>
+                    <tr>
+                        <th>RESULTADO: </th>
+                        
+                        <th>
+                            <p class="text-success">{{filename.principal}}</p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>USAC</th>
+                        <th>{{filename.usac}}</th>
+                    </tr>
+                    <tr>
+                        <th>Marroquin</th>
+                        <th>{{filename.marroquin}}</th>
+                    </tr>
+                    <tr>
+                        <th>Mariano</th>
+                        <th>{{filename.mariano}}</th>
+                    </tr>
+                    <tr>
+                        <th>Landivar</th>
+                        <th>{{filename.landivar}}</th>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>

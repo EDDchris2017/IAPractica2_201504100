@@ -15,8 +15,8 @@ app.config.from_object(__name__)
 Session(app)
 
 # Carga de Modelos de la usac
-predecir = Predecir(1,2,3,4)
-#predecir.abrirModelos()
+predecir = Predecir(3,2,4,2)
+predecir.abrirModelos()
 
 def borrarCarpeta():
     folder = "static/uploads"
@@ -51,8 +51,13 @@ def display_image(filename):
 @app.route('/analizar', methods=['GET', 'POST'])
 def calcular():
     # Ejecutar Predeccion de archivos cargados
-    predecir.ejecutar()
-    pass
+    predicciones = predecir.ejecutar()
+    if len(predicciones) < 6:
+        return render_template('index.html', predicciones=predicciones)
+    else:
+        return "Mas de 5 imagenes"
+
+    return "Retorno invalido"
 
 
 @app.route('/')

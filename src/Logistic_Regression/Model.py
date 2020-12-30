@@ -46,7 +46,8 @@ class Model:
             end = self.finalization(cost, iterations)
 
         train_prediction = self.predict(self.train_set.x)
-        test_prediction = self.predict(self.test_set.x)
+        #print("ENTRADA ",train_prediction)
+        test_prediction  = self.predict(self.test_set.x)
 
         self.train_accuracy = 100 - np.mean(np.abs(train_prediction - self.train_set.y)) * 100
         self.test_accuracy = 100 - np.mean(np.abs(test_prediction - self.test_set.y)) * 100

@@ -55,3 +55,14 @@ MAX ITERATIONS = 15000
 MIN_VALUE      = 0.4
 STEP           = 30
 
+
+------Modelo 7------
+Entrenamiento = 92.57425742574257
+Validacion = 90.11299435028249
+Alpha      = 0.0001
+Lam        = 100
+Regulacion = False
+MAX ITERATIONS = 1000
+MIN_VALUE      = 0.0
+STEP           = 1
+

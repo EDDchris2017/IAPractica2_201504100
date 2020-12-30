@@ -30,8 +30,9 @@ def entrenarModelos(uni, id,reg, alpha, lam, MAX_ITERATIONS, MIN_VALUE, STEP  ):
     test_set_x = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
 
     # Vean la diferencia de la conversion
-    print('Original: ', train_set_x_orig.shape)
-    print('Con reshape: ', train_set_x.shape)
+    print("Entrenamiento de modelo ", uni)
+    #print('Original: ', train_set_x_orig.shape)
+    #print('Con reshape: ', train_set_x.shape)
 
 
     # Definir los conjuntos de datos
@@ -122,4 +123,8 @@ def guardarGrafica(uni, ylim1, ylim2, xlim1 = 0, xlim2 = 1000):
 #entrenarModelos(1, 3,  reg=True, alpha=0.0001, lam=200, MAX_ITERATIONS=15000,  MIN_VALUE=0.0, STEP=10)
 #entrenarModelos(1, 4,  reg=True, alpha=0.001, lam=150, MAX_ITERATIONS=10000,  MIN_VALUE=0.0, STEP=10)
 #entrenarModelos(1, 5, reg=True, alpha=0.002, lam=230, MAX_ITERATIONS=20000,  MIN_VALUE=0.0, STEP=10)
-guardarGrafica(1, ylim1 = 0, ylim2 = 1.50, xlim1=0, xlim2 = 100)
+#guardarGrafica(1, ylim1 = 0, ylim2 = 1.50, xlim1=0, xlim2 = 100)
+
+
+#Pruebas Entrenamiento
+#entrenarModelos(4, 3, reg=False, alpha=0.0001, lam=100, MAX_ITERATIONS=12000, MIN_VALUE=0.0, STEP=10)
