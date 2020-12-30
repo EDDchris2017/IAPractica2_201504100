@@ -4,6 +4,7 @@ import json
 import shutil
 import os
 from Predecir import *
+from Modelo   import *
 
 UPLOAD_FOLDER = 'static/uploads/'
 
@@ -61,6 +62,16 @@ def calcular():
 
     return "Retorno invalido"
 
+@app.route('/entrenar', methods=['GET', 'POST'])
+def entrenar():
+    tasa_aprendizaje    = float(request.form['aprendizaje'])
+    tasa_regulacion     = float(request.form['regulacion'])
+    cant_iteraciones    = float(request.form['iteraciones'])
+    print("Aprendizaje ", tasa_aprendizaje)
+    print("Regulacion ", tasa_regulacion)
+    print("Iteraciones ", cant_iteraciones)
+    entrenarModelos(4, 9,  reg=True, alpha=tasa_aprendizaje, lam=tasa_regulacion, MAX_ITERATIONS=cant_iteraciones,  MIN_VALUE=0.0, STEP=15)
+    return render_template('index.html')
 
 @app.route('/')
 def home_form():

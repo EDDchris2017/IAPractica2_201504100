@@ -92,16 +92,16 @@ class Predecir:
         aciertos_marro, total_marro, marroquin         = 0,0, 0
         for imagen in archivos:
             nombre = imagen.name
-            if "USAC" in nombre:
+            if "USAC" in nombre or "usac" in nombre:
                 total_usac += 1
                 aciertos_usac += self.predecirModelo(imagen, self.modelo_usac, 1)
-            elif "Mariano" in nombre:
+            elif "Mariano" in nombre or "mariano" in nombre:
                 total_mariano += 1
                 aciertos_mariano += self.predecirModelo(imagen, self.modelo_mariano, 1)
-            elif "Landivar" in nombre:
+            elif "Landivar" in nombre or "landivar" in nombre:
                 total_landivar += 1
                 aciertos_landivar += self.predecirModelo(imagen, self.modelo_landivar, 1)
-            elif "Marroquin" in nombre:
+            elif "Marroquin" in nombre or "marroquin" in nombre:
                 total_marro += 1
                 aciertos_marro += self.predecirModelo(imagen, self.modelo_marro, 1)
         # Determinar Porcentajes

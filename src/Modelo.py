@@ -13,6 +13,7 @@ ONLY_SHOW = False #Veo si quiero mostrar una imagen del conjunto de datos
 
 # modelo => 1 : Landivar , 2 : Mariano, 3 : Marroquin, 4 : USAC  
 def entrenarModelos(uni, id,reg, alpha, lam, MAX_ITERATIONS, MIN_VALUE, STEP  ):
+    print("Hiperparametros recibidos ...")
     id_archivo = ""
     if uni == 4:
         id_archivo = "USAC"
@@ -31,8 +32,8 @@ def entrenarModelos(uni, id,reg, alpha, lam, MAX_ITERATIONS, MIN_VALUE, STEP  ):
 
     # Vean la diferencia de la conversion
     print("Entrenamiento de modelo ", uni)
-    #print('Original: ', train_set_x_orig.shape)
-    #print('Con reshape: ', train_set_x.shape)
+    print('Original: ', train_set_x_orig.shape)
+    print('Con reshape: ', train_set_x.shape)
 
 
     # Definir los conjuntos de datos
@@ -92,6 +93,38 @@ def guardarGrafica(uni, ylim1, ylim2, xlim1 = 0, xlim2 = 1000):
     Plotter.show_Model(modelos, "imagen_" + id_archivo, ylim1, ylim2, xlim1, xlim2)
 
 
+def inicializacion():
+    #Entrenamiento USAC
+    entrenarModelos(4, 1, reg=False, alpha=0.001, lam=150, MAX_ITERATIONS=10000, MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(4, 2, reg=True, alpha=0.00001, lam=20, MAX_ITERATIONS=10000, MIN_VALUE=0.3, STEP=10)
+    entrenarModelos(4, 3, reg=False, alpha=0.0001, lam=20, MAX_ITERATIONS=15000, MIN_VALUE=0.1, STEP=30)
+    entrenarModelos(4, 4, reg=False, alpha=0.0009, lam=20, MAX_ITERATIONS=16000, MIN_VALUE=0.2, STEP=10)
+    entrenarModelos(4, 5, reg=True, alpha=0.009, lam=3, MAX_ITERATIONS=15000, MIN_VALUE=0.4, STEP=30)
+    guardarGrafica(4, ylim1 = 0, ylim2 = 1.50)
+
+#Entrenamiento Marroquin
+    entrenarModelos(3, 1, reg=False, alpha=0.0003, lam=150, MAX_ITERATIONS=12000, MIN_VALUE=0.1, STEP=20)
+    entrenarModelos(3, 2, reg=False, alpha=0.0007, lam=150, MAX_ITERATIONS=12000, MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(3, 3, reg=True, alpha=0.005, lam=200, MAX_ITERATIONS=10000, MIN_VALUE=0.0, STEP=30)
+    entrenarModelos(3, 4, reg=True, alpha=0.005, lam=100, MAX_ITERATIONS=1500, MIN_VALUE=0.2, STEP=10)
+    entrenarModelos(3, 5, reg=True, alpha=0.002, lam=600, MAX_ITERATIONS=15000, MIN_VALUE=0.0, STEP=10)
+    guardarGrafica(3, ylim1 = 0, ylim2 = 1.50, xlim1=0, xlim2 = 30)
+
+#Entrenamiento Mariano
+    entrenarModelos(2, 1, reg=True, alpha=0.004, lam=110, MAX_ITERATIONS=12000,  MIN_VALUE=0.1, STEP=10)
+    entrenarModelos(2, 2, reg=True, alpha=0.002, lam=230, MAX_ITERATIONS=12000,  MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(2, 3, reg=True, alpha=0.0001, lam=0.5, MAX_ITERATIONS=12000, MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(2, 4,  reg=True, alpha=0.0006, lam=130, MAX_ITERATIONS=15000,  MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(2, 5,  reg=True, alpha=0.0000009, lam=125, MAX_ITERATIONS=10000,  MIN_VALUE=0.0, STEP=10)
+    guardarGrafica(2, ylim1 = 0, ylim2 = 1.50, xlim1=0, xlim2 = 300)
+
+#Entrenamiento Landivar
+    entrenarModelos(1, 1,  reg=False, alpha=0.00009, lam=125, MAX_ITERATIONS=10000,  MIN_VALUE=0.1, STEP=15)
+    entrenarModelos(1, 2,  reg=False, alpha=0.0004, lam=125, MAX_ITERATIONS=10000,  MIN_VALUE=0.2, STEP=10)
+    entrenarModelos(1, 3,  reg=True, alpha=0.0001, lam=200, MAX_ITERATIONS=15000,  MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(1, 4,  reg=True, alpha=0.001, lam=150, MAX_ITERATIONS=10000,  MIN_VALUE=0.0, STEP=10)
+    entrenarModelos(1, 5, reg=True, alpha=0.002, lam=230, MAX_ITERATIONS=20000,  MIN_VALUE=0.0, STEP=10)
+    guardarGrafica(1, ylim1 = 0, ylim2 = 1.50, xlim1=0, xlim2 = 100)
 
 #Entrenamiento USAC
 #entrenarModelos(4, 1, reg=False, alpha=0.001, lam=150, MAX_ITERATIONS=10000, MIN_VALUE=0.0, STEP=10)
@@ -99,7 +132,7 @@ def guardarGrafica(uni, ylim1, ylim2, xlim1 = 0, xlim2 = 1000):
 #entrenarModelos(4, 3, reg=False, alpha=0.0001, lam=20, MAX_ITERATIONS=15000, MIN_VALUE=0.1, STEP=30)
 #entrenarModelos(4, 4, reg=False, alpha=0.0009, lam=20, MAX_ITERATIONS=16000, MIN_VALUE=0.2, STEP=10)
 #entrenarModelos(4, 5, reg=True, alpha=0.009, lam=3, MAX_ITERATIONS=15000, MIN_VALUE=0.4, STEP=30)
-guardarGrafica(4, ylim1 = 0, ylim2 = 1.50)
+#guardarGrafica(4, ylim1 = 0, ylim2 = 1.50)
 
 #Entrenamiento Marroquin
 #entrenarModelos(3, 1, reg=False, alpha=0.0003, lam=150, MAX_ITERATIONS=12000, MIN_VALUE=0.1, STEP=20)
@@ -124,7 +157,3 @@ guardarGrafica(4, ylim1 = 0, ylim2 = 1.50)
 #entrenarModelos(1, 4,  reg=True, alpha=0.001, lam=150, MAX_ITERATIONS=10000,  MIN_VALUE=0.0, STEP=10)
 #entrenarModelos(1, 5, reg=True, alpha=0.002, lam=230, MAX_ITERATIONS=20000,  MIN_VALUE=0.0, STEP=10)
 #guardarGrafica(1, ylim1 = 0, ylim2 = 1.50, xlim1=0, xlim2 = 100)
-
-
-#Pruebas Entrenamiento
-#entrenarModelos(4, 3, reg=False, alpha=0.0001, lam=100, MAX_ITERATIONS=12000, MIN_VALUE=0.0, STEP=10)

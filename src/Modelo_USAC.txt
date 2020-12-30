@@ -32,8 +32,6 @@ MIN_VALUE      = 0.1
 STEP           = 30
 
 
-
-
 ------Modelo 4------
 Entrenamiento = 95.46742209631728
 Validacion = 85.3932584269663

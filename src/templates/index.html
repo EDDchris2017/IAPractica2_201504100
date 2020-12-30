@@ -44,6 +44,18 @@
                     <input type="submit" value="Analizar Imagenes">
                 </p>
             </form>
+            <br>
+            <form method="post" action="/entrenar" enctype="multipart/form-data">
+                <label for="tasaAprendizaje">Tasa de Aprendizaje</label>
+                <input class="form-control" type="text" placeholder="100" name="aprendizaje" id="aprendizaje" value="0">
+                <br>
+                <label for="tasaRegulacion">Tasa de Regulacion</label>
+                <input class="form-control" type="text" placeholder="100" name="regulacion" id="regulacion" value="0">
+                <label for="tasaIteracion">Cantidad de Iteraciones</label>
+                <input class="form-control" type="text" placeholder="100" name="iteraciones" id="iteraciones" value="10000">
+                <br>
+                <input type="submit" value="Probar Entrenamiento">
+            </form>
         </div>
         
     </div>
