@@ -99,7 +99,7 @@ def guardarGrafica(uni, ylim1, ylim2, xlim1 = 0, xlim2 = 1000):
 #entrenarModelos(4, 3, reg=False, alpha=0.0001, lam=20, MAX_ITERATIONS=15000, MIN_VALUE=0.1, STEP=30)
 #entrenarModelos(4, 4, reg=False, alpha=0.0009, lam=20, MAX_ITERATIONS=16000, MIN_VALUE=0.2, STEP=10)
 #entrenarModelos(4, 5, reg=True, alpha=0.009, lam=3, MAX_ITERATIONS=15000, MIN_VALUE=0.4, STEP=30)
-#guardarGrafica(4, ylim1 = 0, ylim2 = 1.50)
+guardarGrafica(4, ylim1 = 0, ylim2 = 1.50)
 
 #Entrenamiento Marroquin
 #entrenarModelos(3, 1, reg=False, alpha=0.0003, lam=150, MAX_ITERATIONS=12000, MIN_VALUE=0.1, STEP=20)

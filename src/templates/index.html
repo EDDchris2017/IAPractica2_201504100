@@ -89,5 +89,34 @@
             </div>
         {% endfor %}
     {% endif %}
+    <!-- Muestra tabla de porcentajes -->
+    {% if conjunto %}
+    <table class="table">
+        <thead>
+          <tr>
+                <th scope="col">Universidad</th>
+                <th scope="col">Exactitud del Modelo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+                <th scope="row">USAC</th>
+                <td>{{conjunto.usac}}%</td>
+          </tr>
+          <tr>
+                <th scope="row">Mariano</th>
+                <td>{{conjunto.mariano}}%</td>
+          </tr>
+          <tr>
+                <th scope="row">Landivar</th>
+                <td>{{conjunto.landivar}}%</td>
+          </tr>
+          <tr>
+                <th scope="row">Marroquin</th>
+                <td>{{conjunto.marroquin}}%</td>
+          </tr>
+        </tbody>
+    </table>
+    {% endif %}
 </body>
 </html>

@@ -4,6 +4,15 @@ import cv2
 import numpy as np
 from Logistic_Regression.Data import Data
 from PIL import Image
+
+class Conjunto:
+
+    def __init__(self, usac, marroquin, mariano, landivar):
+        self.usac = usac
+        self.marroquin = marroquin
+        self.mariano = mariano
+        self.landivar = landivar
+
 class Prediccion:
 
     def __init__(self, imagen, usac, marroquin, mariano, landivar):
@@ -58,6 +67,8 @@ class Predecir:
                         result = self.predecirArchivo(imagen)
                         salida.append(result)
                     return salida
+                else:
+                    return self.calcularPorcentajes(archivos)
         else:
             print("Hay modelos que no se encuentran cargados !!!")
             return None
@@ -73,6 +84,40 @@ class Predecir:
         res_landivar    = self.modelo_landivar.predict(data_imagen.x)
         return Prediccion(imagen = imagen, usac=res_usac, marroquin=res_marroquin, mariano=res_mariano, landivar=res_landivar)
 
+    # Calcular por porcentaje
+    def calcularPorcentajes(self, archivos):
+        aciertos_usac, total_usac, usac = 0, 0, 0
+        aciertos_landivar, total_landivar, landivar = 0,0, 0
+        aciertos_mariano, total_mariano,mariano       = 0,0, 0
+        aciertos_marro, total_marro, marroquin         = 0,0, 0
+        for imagen in archivos:
+            nombre = imagen.name
+            if "USAC" in nombre:
+                total_usac += 1
+                aciertos_usac += self.predecirModelo(imagen, self.modelo_usac, 1)
+            elif "Mariano" in nombre:
+                total_mariano += 1
+                aciertos_mariano += self.predecirModelo(imagen, self.modelo_mariano, 1)
+            elif "Landivar" in nombre:
+                total_landivar += 1
+                aciertos_landivar += self.predecirModelo(imagen, self.modelo_landivar, 1)
+            elif "Marroquin" in nombre:
+                total_marro += 1
+                aciertos_marro += self.predecirModelo(imagen, self.modelo_marro, 1)
+        # Determinar Porcentajes
+        if total_usac > 0: usac = int((aciertos_usac / total_usac) * 100)
+        if total_landivar > 0: landivar = int((aciertos_landivar / total_landivar) * 100)
+        if total_mariano > 0: mariano  = int((aciertos_mariano / total_mariano ) * 100)
+        if total_marro > 0: marroquin = int((aciertos_marro / total_marro ) * 100)
+        return Conjunto(usac = usac, landivar = landivar, mariano = mariano, marroquin = marroquin)
+
+    # Evaluacion de imagenes con un modelo especifico
+    def predecirModelo(self, imagen, modelo, salida):
+        data_imagen = self.imagenVector(imagen, 1)
+        # Evaluar con modelo
+        res_predict = modelo.predict(data_imagen.x)
+        return res_predict
+
     def imagenVector(self, imagen, salida):
         img = cv2.imread(imagen.path, 1)
         entradas = np.array([img])
@@ -84,13 +129,6 @@ class Predecir:
         data_set = Data(train_entrada, salidas, 255)
 
         return data_set
-
-        #img_reshape = entradas.reshape(entradas.shape[0], -1).T
-        #y = sum(img_reshape.tolist(),[])
-        #x = np.array([y]).T
-        #print(x.shape)
-        #print(x)
-        #return x
 
     
     def hayModelos(self):

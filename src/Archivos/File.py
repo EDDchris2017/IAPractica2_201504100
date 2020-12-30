@@ -30,13 +30,7 @@ def cargarImagenes(ruta, modelo):
         print(ruta + uni)
         for fichero in ficheros:
             img = cv2.imread(fichero.path, 1)
-            img_1 = img.copy()
-            img_2 = img.copy()
-            img_3 = img.copy()
             result_entradas = np.append(result_entradas, Imagen(img, 1))
-            result_entradas = np.append(result_entradas, Imagen(img_1, 1))
-            result_entradas = np.append(result_entradas, Imagen(img_2, 1))
-            result_entradas = np.append(result_entradas, Imagen(img_3, 1))
     
     # Obtener entradas y salidas 0
     with os.scandir(ruta) as ficheros:
@@ -46,13 +40,7 @@ def cargarImagenes(ruta, modelo):
                 with os.scandir(ruta + carpeta) as imagenes:
                     for archivo in imagenes:
                         img = cv2.imread(archivo.path, 1)
-                        img_1 = img.copy()
-                        img_2 = img.copy()
-                        img_3 = img.copy()
                         result_entradas = np.append(result_entradas, Imagen(img, 0))
-                        result_entradas = np.append(result_entradas, Imagen(img_1, 0))
-                        result_entradas = np.append(result_entradas, Imagen(img_2, 0))
-                        result_entradas = np.append(result_entradas, Imagen(img_3, 0))
     result = np.array(result_entradas)
     np.random.shuffle(result)
     result_entradas = [o.imagen for o in result]

@@ -40,7 +40,9 @@ def imagenes():
     for file in files:
         file_names.append(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-    return render_template('index.html', filenames=file_names)
+    if len(file_names) < 26:
+        return render_template('index.html', filenames=file_names)
+    return render_template('index.html')
     
 
 @app.route('/display/<filename>')
@@ -52,10 +54,10 @@ def display_image(filename):
 def calcular():
     # Ejecutar Predeccion de archivos cargados
     predicciones = predecir.ejecutar()
-    if len(predicciones) < 6:
+    if type(predicciones) is list:
         return render_template('index.html', predicciones=predicciones)
     else:
-        return "Mas de 5 imagenes"
+        return render_template("index.html", conjunto=predicciones)
 
     return "Retorno invalido"
 
